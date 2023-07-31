@@ -1,38 +1,14 @@
-package main
+package lib
 
 import (
 	"bufio"
-	"flag"
 	"fmt"
-	"lib/lib"
 	"log"
 	"net"
 	"os"
 )
 
-func main() {
-	var isHost bool
-	flag.BoolVar(&isHost, "listen", false, "Listens on the specified IP address")
-
-	flag.Parse()
-	if isHost {
-		// go run main.go -listen <IP>
-		connIP := os.Args[2]
-		fmt.Println("is host")
-		lib.RunHost(connIP)
-	} else {
-		// go run main.go  <IP>
-		fmt.Println("is guest")
-		connIP := os.Args[1]
-		lib.RunGuest(connIP)
-	}
-
-}
-
 const port = "8080"
-
-//RunHost takes an IP address
-//and listen for connections on that IP
 
 func RunHost(ip string) {
 	ipAndPort := ip + ":" + port
@@ -54,8 +30,6 @@ func RunHost(ip string) {
 	fmt.Println("Message recived", message)
 }
 
-// RunGust take destination IP
-// as argument and conect to that IP
 func RunGuest(ip string) {
 
 }
